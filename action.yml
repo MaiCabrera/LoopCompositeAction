@@ -1,13 +1,13 @@
 name: 'Bash Loop for Env Vars'
 description: 'Use env var for a second step to consume'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  custom_env:  # id of input
+    description: 'list of strings for env var'
     required: true
-    default: 'World'
+    default: 'my-env'
 outputs:
-  random-number:
-    description: "Random number"
+  custom_env:
+    description: "custom env output to use index ref for input use"
     value: ${{ steps.random-number-generator.outputs.random-id }}
 runs:
   using: "composite"
