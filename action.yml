@@ -12,12 +12,21 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - run: echo File Path to Read ${{ inputs.who-to-greet }}.
+    - run: echo File Path to Read ${{ inputs.destinationFolder }}.
       shell: bash
-    - id: random-number-generator
-      run: echo "::set-output name=random-id::$(echo $RANDOM)"
+    - id: number of strings read
+      run: ${{ github.action_path }}/extract.sh
       shell: bash
     - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
       shell: bash          
     - run: extract.sh
       shell: bash
+
+      # - name: AWS Lambda Deploy
+      # - uses: appleboy/lambda-action@master
+      #   with:
+      #     aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     aws_region: ${{ secrets.AWS_REGION }}
+      #     function_name: echo "${i}"
+      #     source: /tests/echo "${i}"
