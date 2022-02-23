@@ -8,16 +8,16 @@ inputs:
 outputs:
   copied_envs:
     description: "custom env output to use index ref for input use"
-    value: ${{ steps.random-number-generator.outputs.random-id }}
+    value: ${{ steps.number-of-strings-read.outputs.$envVAr }}
 runs:
   using: "composite"
   steps:
     - run: echo File Path to Read ${{ inputs.destinationFolder }}.
       shell: bash
-    - id: number of strings read
+    - id: number-of-strings-read
       run: ${{ github.action_path }}/extract.sh
       shell: bash
-    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+    - run: echo "::set-output ::$(echo $envVAr)"
       shell: bash          
     - run: extract.sh
       shell: bash
