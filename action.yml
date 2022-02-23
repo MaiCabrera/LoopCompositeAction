@@ -1,23 +1,23 @@
 name: 'Bash Loop for Env Vars'
 description: 'Use env var for a second step to consume'
 inputs:
-  custom_env:  # id of input
-    description: 'list of strings for env var'
+  destinationFolder:  # id of input
+    description: 'This folder path reads the input for the bash script to create a env with multiple vars'
     required: true
-    default: 'my-env'
+    default: '~'
 outputs:
-  custom_env:
+  copied_envs:
     description: "custom env output to use index ref for input use"
     value: ${{ steps.random-number-generator.outputs.random-id }}
 runs:
   using: "composite"
   steps:
-    - run: echo Hello ${{ inputs.who-to-greet }}.
+    - run: echo File Path to Read ${{ inputs.who-to-greet }}.
       shell: bash
     - id: random-number-generator
       run: echo "::set-output name=random-id::$(echo $RANDOM)"
       shell: bash
     - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
       shell: bash          
-    - run: goodbye.sh
+    - run: extract.sh
       shell: bash
