@@ -14,13 +14,12 @@ runs:
   steps:
     - run: echo File Path to Read ${{ inputs.destinationFolder }}.
       shell: bash
-    - id: number of strings read
+    - id: number-of-strings-read
       run: ${{ github.action_path }}/extract.sh
       shell: bash
-    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+    - run: echo "::set-output ::$(echo $envVar)"
       shell: bash          
-    - run: extract.sh
-      shell: bash
+
 
       # - name: AWS Lambda Deploy
       # - uses: appleboy/lambda-action@master
