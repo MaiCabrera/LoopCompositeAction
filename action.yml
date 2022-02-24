@@ -1,15 +1,15 @@
 ---
 name: 'Read file & Store env with mulitple strings'
 description: 'Pretends to copy some files and return the number of files copied'
-inputs:
-  destinationFolder:  # path
-    description: 'The folder to copy the files to'
-    required: true
-    default: '~'
-outputs:
-  copied-files: 
-    description: "Number of files copied"
-    value: ${{ steps.random-number-generator.outputs.filesNo }}
+# inputs:
+#   destinationFolder:  # path
+#     description: 'The folder to copy the files to'
+#     required: true
+#     default: '~'
+# outputs:
+#   copied-files: 
+#     description: "N"
+#     value: ${{ steps.random-number-generator.outputs.filesNo }}
 runs:
   using: "composite"
   steps:
