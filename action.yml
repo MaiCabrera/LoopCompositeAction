@@ -1,23 +1,29 @@
-name: 'Bash Loop for Env Vars'
-description: 'Use env var for a second step to consume'
+---
+name: 'Read file & Store env with mulitple strings'
+description: 'Pretends to copy some files and return the number of files copied'
 inputs:
-  custom_env:  # id of input
-    description: 'list of strings for env var'
+  destinationFolder:  # path
+    description: 'The folder to copy the files to'
     required: true
-    default: 'my-env'
+    default: '~'
 outputs:
-  custom_env:
-    description: "custom env output to use index ref for input use"
-    value: ${{ steps.random-number-generator.outputs.random-id }}
+  copied-files: 
+    description: "Number of files copied"
+    value: ${{ steps.random-number-generator.outputs.filesNo }}
 runs:
   using: "composite"
   steps:
-    - run: echo Hello ${{ inputs.who-to-greet }}.
-      shell: bash
-    - id: random-number-generator
-      run: echo "::set-output name=random-id::$(echo $RANDOM)"
-      shell: bash
-    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
-      shell: bash          
-    - run: goodbye.sh
+    - uses: actions/checkout@v2
+    - name: echo-metadata-of-gitHub-action-run
+      run: |
+        echo "Home: ${HOME}"
+        echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}"
+        echo "GITHUB_ACTIONS: ${GITHUB_ACTIONS}"
+        echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
+        echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
+        echo "GITHUB_EVENT_NAME: ${GITHUB_EVENT_NAME}"
+        echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
+        echo "GITHUB_SHA: ${GITHUB_SHA}"
+        echo "GITHUB_REF: ${GITHUB_REF}"
+        echo "GITHUB_RUN_ID: ${GITHUB_RUN_ID}"
       shell: bash
