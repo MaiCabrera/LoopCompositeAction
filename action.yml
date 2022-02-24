@@ -13,8 +13,7 @@ description: 'Pretends to copy some files and return the number of files copied'
 runs:
   using: "composite"
   steps:
-    - name: echo-metadata-of-gitHub-action-run
-      run: |
+    - run: |
         echo "Home: ${HOME}"
         echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}"
         echo "GITHUB_ACTIONS: ${GITHUB_ACTIONS}"
