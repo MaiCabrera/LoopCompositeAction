@@ -27,3 +27,36 @@ runs:
         echo "GITHUB_REF: ${GITHUB_REF}"
         echo "GITHUB_RUN_ID: ${GITHUB_RUN_ID}"
       shell: bash
+
+
+#   destinationFolder:  # id of input
+#     description: 'This folder path reads the input for the bash script to create a env with multiple vars'
+#     required: true
+#     default: '~'
+# outputs:
+#   copied_envs:
+#     description: "custom env output to use index ref for input use"
+#     value: ${{ steps.number-of-strings-read.outputs.$envVAr }}
+
+
+# runs:
+#   using: "composite"
+#   steps:
+#     - run: echo File Path to Read ${{ inputs.destinationFolder }}.
+#       shell: bash
+#     - id: number-of-strings-read
+#       run: ${{ github.action_path }}/extract.sh
+#       shell: bash
+#     - run: echo "::set-output ::$(echo $envVAr)"
+#       shell: bash          
+#     - run: extract.sh
+#       shell: bash
+
+      # - name: AWS Lambda Deploy
+      # - uses: appleboy/lambda-action@master
+      #   with:
+      #     aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     aws_region: ${{ secrets.AWS_REGION }}
+      #     function_name: echo "${i}"
+      #     source: /tests/echo "${i}"
