@@ -1,25 +1,54 @@
-name: 'Bash Loop for Env Vars'
-description: 'Use env var for a second step to consume'
-inputs:
-  destinationFolder:  # id of input
-    description: 'This folder path reads the input for the bash script to create a env with multiple vars'
-    required: true
-    default: '~'
-outputs:
-  copied_envs:
-    description: "custom env output to use index ref for input use"
-    value: ${{ steps.random-number-generator.outputs.random-id }}
+---
+name: 'Read file & Store env with mulitple strings'
+description: 'Pretends to copy some files and return the number of files copied'
+# inputs:
+#   destinationFolder:  # path
+#     description: 'The folder to copy the files to'
+#     required: true
+#     default: '~'
+# outputs:
+#   copied-files: 
+#     description: "N"
+#     value: ${{ steps.random-number-generator.outputs.filesNo }}
 runs:
   using: "composite"
   steps:
-    - run: echo File Path to Read ${{ inputs.destinationFolder }}.
+    - run: |
+        echo "Home: ${HOME}"
+        echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}"
+        echo "GITHUB_ACTIONS: ${GITHUB_ACTIONS}"
+        echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
+        echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
+        echo "GITHUB_EVENT_NAME: ${GITHUB_EVENT_NAME}"
+        echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
+        echo "GITHUB_SHA: ${GITHUB_SHA}"
+        echo "GITHUB_REF: ${GITHUB_REF}"
+        echo "GITHUB_RUN_ID: ${GITHUB_RUN_ID}"
       shell: bash
-    - id: number-of-strings-read
-      run: ${{ github.action_path }}/extract.sh
-      shell: bash
-    - run: echo "::set-output ::$(echo $envVar)"
-      shell: bash          
 
+
+#   destinationFolder:  # id of input
+#     description: 'This folder path reads the input for the bash script to create a env with multiple vars'
+#     required: true
+#     default: '~'
+# outputs:
+#   copied_envs:
+#     description: "custom env output to use index ref for input use"
+#     value: ${{ steps.number-of-strings-read.outputs.$envVAr }}
+
+
+# runs:
+#   using: "composite"
+#   steps:
+#     - run: echo File Path to Read ${{ inputs.destinationFolder }}.
+#       shell: bash
+#     - id: number-of-strings-read
+#       run: ${{ github.action_path }}/extract.sh
+#       shell: bash
+#     - run: echo "::set-output ::$(echo $envVAr)"
+#       shell: bash          
+#     - run: extract.sh
+#       shell: bash
 
       # - name: AWS Lambda Deploy
       # - uses: appleboy/lambda-action@master
