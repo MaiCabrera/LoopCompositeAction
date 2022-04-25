@@ -19,13 +19,3 @@ runs:
       shell: bash
     - run: echo "::set-output ::$(echo $envVar)"
       shell: bash          
-
-
-      # - name: AWS Lambda Deploy
-      # - uses: appleboy/lambda-action@master
-      #   with:
-      #     aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     aws_region: ${{ secrets.AWS_REGION }}
-      #     function_name: echo "${i}"
-      #     source: /tests/echo "${i}"
